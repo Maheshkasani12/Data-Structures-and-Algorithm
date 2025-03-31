@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    void reverseArray(vector<int> &arr) {
+        int n=arr.size();
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int temp=arr[low];
+            arr[low]=arr[high];   // swap(arr[low],arr[high]);
+            arr[high]=temp;
+           
+            low++;
+            high--;
+        }
+        // code here
+    }
+};
