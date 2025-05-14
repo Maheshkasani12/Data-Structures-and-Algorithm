@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+bool checkInclusion(std::string s2, std::string s1) {
+    if (s2.length() > s1.length()) return false;
+
+    std::vector<int> freqS2(26, 0), windowFreq(26, 0);
+
+    // Count frequency of characters in s2
+    for (char ch : s2)
+        freqS2[ch - 'a']++;
+
+    // Initialize the first window
+    for (int i = 0; i < s2.length(); i++)
+        windowFreq[s1[i] - 'a']++;
+
+    if (freqS2 == windowFreq) return true;
+
+    // Slide the window across s1
+    for (int i = s2.length(); i < s1.length(); i++) {
+        windowFreq[s1[i] - 'a']++;                         // Add new char
+        windowFreq[s1[i - s2.length()] - 'a']--;           // Remove old char
+
+        if (freqS2 == windowFreq) return true;
+    }
+
+    return false;
+}
