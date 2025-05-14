@@ -1,0 +1,11 @@
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+
+        while(s.length()>0 && s.find(part) < s.length()){  //it find the starting position of the substring
+            s.erase(s.find(part),part.length());   //it erase the substring 
+        }
+        return s;
+        
+    }
+};
