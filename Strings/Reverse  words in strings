@@ -1,0 +1,45 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+
+/// this is for having white spaces in between 
+
+      
+    //     int n=s.length();
+    //     reverse(s.begin(),s.end());
+
+    //     int start=0;
+    //     for(int i=0;i<n;i++){
+    //         if(s[i]==' '){
+    //             reverse(s.begin()+start,s.begin()+i);
+    //             start=i+1;
+    //         }
+    //     }
+    //    reverse(s.begin()+start,s.end());
+    //     return s;
+
+
+
+
+      ///  This is for remove the white spaces begining ,between and end.
+ int n=s.length();
+    reverse(s.begin(),s.end());
+    
+    
+    string ans="";
+
+    for(int i=0;i<n;i++){
+        string word="";
+        while(i<n && s[i]!= ' '){
+            word=word+s[i];
+            i++;
+        }
+        reverse(word.begin(),word.end());
+        if(word.length()>0){
+            ans+=" "+word;
+        }
+    }
+    return ans.substr(1);
+    }
+     
+};
