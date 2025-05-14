@@ -1,1 +1,106 @@
 
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <sstream>
+#include <set>
+#include <cctype>
+
+int main() {
+    // 1. Declaration & Initialization
+    std::string str1 = "Hello";
+    std::string str2("World");
+    std::string str3;
+
+    std::cout << "1. Initial Strings:\n";
+    std::cout << "str1: " << str1 << "\nstr2: " << str2 << "\n\n";
+
+    // 2. Input & Output
+    std::cout << "2. Enter a string (with spaces): ";
+    std::getline(std::cin, str3);
+    std::cout << "You entered: " << str3 << "\n\n";
+
+    // 3. Concatenation
+    std::string concat = str1 + " " + str2;
+    std::cout << "3. Concatenated string: " << concat << "\n\n";
+
+    // 4. Length & Size
+    std::cout << "4. Length of str1: " << str1.length() << "\n\n";
+
+    // 5. Access & Modify Characters
+    std::cout << "5. First character of str1: " << str1[0] << "\n";
+    str1[0] = 'h';
+    std::cout << "   Modified str1: " << str1 << "\n\n";
+
+    // 6. Comparison
+    std::cout << "6. Comparing str1 and str2: " 
+              << (str1 == str2 ? "Equal" : "Not Equal") << "\n\n";
+
+    // 7. Substring
+    std::string sub = str3.substr(0, 5);
+    std::cout << "7. Substring of str3 (0-4): " << sub << "\n\n";
+
+    // 8. Find
+    size_t pos = str3.find("test");
+    if (pos != std::string::npos)
+        std::cout << "8. 'test' found at index: " << pos << "\n\n";
+    else
+        std::cout << "8. 'test' not found.\n\n";
+
+    // 9. Replace
+    std::string replaceStr = str3;
+    replaceStr.replace(0, 4, "TEST");
+    std::cout << "9. Replaced string: " << replaceStr << "\n\n";
+
+    // 10. Insert
+    std::string insertStr = str3;
+    insertStr.insert(2, "++");
+    std::cout << "10. After insert: " << insertStr << "\n\n";
+
+    // 11. Erase
+    std::string eraseStr = str3;
+    eraseStr.erase(1, 3);
+    std::cout << "11. After erase: " << eraseStr << "\n\n";
+
+    // 12. Conversions
+    std::string numStr = "1234";
+    int num = std::stoi(numStr);
+    int x = 5678;
+    std::string fromNum = std::to_string(x);
+    std::cout << "12. String to int: " << num << "\n";
+    std::cout << "    Int to string: " << fromNum << "\n\n";
+
+    // 13. Reverse
+    std::string rev = str3;
+    std::reverse(rev.begin(), rev.end());
+    std::cout << "13. Reversed string: " << rev << "\n\n";
+
+    // 14. Sort
+    std::string sortStr = str3;
+    std::sort(sortStr.begin(), sortStr.end());
+    std::cout << "14. Sorted string: " << sortStr << "\n\n";
+
+    // 15. Unique Characters using set
+    std::set<char> uniqueChars(str3.begin(), str3.end());
+    std::cout << "15. Unique characters in str3: ";
+    for (char ch : uniqueChars) std::cout << ch << " ";
+    std::cout << "\n\n";
+
+    // 16. String Stream
+    std::string line = "123 456 OpenAI";
+    std::stringstream ss(line);
+    int a, b;
+    std::string word;
+    ss >> a >> b >> word;
+    std::cout << "16. Using stringstream:\n";
+    std::cout << "   Integers: " << a << ", " << b << "\n";
+    std::cout << "   Word: " << word << "\n\n";
+
+    // 17. Character classification
+    std::cout << "17. Character type check on str3[0]: " << str3[0] << "\n";
+    if (std::isalpha(str3[0])) std::cout << "   It's a letter.\n";
+    if (std::isdigit(str3[0])) std::cout << "   It's a digit.\n";
+    std::cout << "   Uppercase: " << (char)std::toupper(str3[0]) << "\n\n";
+
+    return 0;
+}
