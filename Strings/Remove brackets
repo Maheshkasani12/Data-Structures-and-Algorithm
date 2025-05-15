@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string solve(string s) {
+    string res = "";
+    for (char c : s) {
+        if (c == '(' || c == ')')
+            continue;
+        res += c;
+    }
+    return res;
+}
+
+int main() {
+    string input_str;
+    cout << "Enter a string: ";
+    getline(cin, input_str);
+
+    string result = solve(input_str);
+    cout << "Result after removing parentheses: " << result << endl;
+
+    return 0;
+}
