@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    string modify(string& s) {
+        string ans="";
+        
+        for(char c:s){
+            if(c != ' '){
+                 ans =ans +c;
+            }
+        }
+        return ans;
+        // code here.
+    }
