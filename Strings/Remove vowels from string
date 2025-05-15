@@ -1,0 +1,17 @@
+class Solution {
+  public:
+
+    string removeVowels(string& s) {
+        string ans=" ";
+        
+        for(char c :s){
+            char l=tolower(c);
+            if(l !='a' && l !='e' && l!='i' && l!='o' && l!='u'){
+                ans +=l;
+                
+            }
+        }
+        return ans;
+        // Your code goes here
+    }
+};
