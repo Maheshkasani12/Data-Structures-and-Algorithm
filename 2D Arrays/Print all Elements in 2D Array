@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void printGrid(int N, int M, const vector<vector<int>> &Grid) {
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            cout << Grid[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> Grid(N, vector<int>(M));
+
+    for (int i = 0; i < N; ++i)
+        for (int j = 0; j < M; ++j)
+            cin >> Grid[i][j];
+
+    printGrid(N, M, Grid);
+
+    return 0;
+}
