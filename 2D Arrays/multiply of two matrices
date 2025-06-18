@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    void Multiply(vector<vector<int>>& matrixA, vector<vector<int>>& matrixB) {
+        int n1 = matrixA.size();        // rows of A
+        int m1 = matrixA[0].size();     // cols of A
+        int n2 = matrixB.size();        // rows of B
+        int m2 = matrixB[0].size();     // cols of B
+
+        vector<vector<int>> ans;
+
+        if (m1 == n2) {
+            for (int i = 0; i < n1; i++) {
+                vector<int> temp;
+                for (int j = 0; j < m2; j++) {
+                    int sum = 0;
+                    for (int k = 0; k < m1; k++) {
+                        sum += matrixA[i][k] * matrixB[k][j];
+                    }
+                    temp.push_back(sum);
+                }
+                ans.push_back(temp);
+            }
+
+            // Print the result matrix using for loops
+            for (int i = 0; i < ans.size(); i++) {
+                for (int j = 0; j < ans[i].size(); j++) {
+                    cout << ans[i][j] << " ";
+                }
+                cout << endl;
+            }
+
+        } else {
+            cout << "Matrix multiplication not possible." << endl;
+        }
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<vector<int>> A(n, vector<int>(n));
+    vector<vector<int>> B(n, vector<int>(n));
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> A[i][j];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> B[i][j];
+
+    Solution s;
+    s.Multiply(A, B);
+    return 0;
+}
