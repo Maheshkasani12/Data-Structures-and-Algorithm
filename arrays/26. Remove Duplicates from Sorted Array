@@ -4,11 +4,29 @@ int removeDuplicates(vector<int>& nums) {
 
     for (int num : nums) {
         if (freq[num] == 0) {
-            unique.push_back(num);
-        }
+            unique.push_back(num);  //tc O(n) worst case        
+}
         freq[num]++;
     }
 
     nums = unique;
     return nums.size();
 }
+
+
+/// or by sing only loops
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        
+        int index = 1;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index;
+    }
+};
