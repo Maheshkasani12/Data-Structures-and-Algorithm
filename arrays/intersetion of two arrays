@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int m=nums1.size();
+        int n=nums2.size();
+        vector<int> a;
+    
+
+
+        unordered_set<int> s(nums2.begin(),nums2.end());
+=-
+        for(int i=0;i<m;i++){
+            if(s.find(nums1[i])!=s.end()){
+                a.push_back(nums1[i]);
+                s.erase(nums1[i]);
+
+            }
+        }
+      return a;
+
+        
+    }
+};
