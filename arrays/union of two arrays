@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    // a,b : the arrays
+    // Function to return a list containing the union of the two arrays.
+    vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // Your code here
+       int n1 = a.size();
+       int n2 = b.size();
+
+        
+        set<int> unions;
+        
+        for(int i=0;i<n1;i++){
+            unions.insert(a[i]);
+        }
+        for(int i=0;i<n2;i++){
+            unions.insert(b[i]);
+        }
+        vector<int> result;
+        
+        for(int val : unions){
+            result.push_back(val);
+        }
+        return result;
+        // return vector with correct order of elements
+    }
+};
