@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        unordered_map<int,int>mpp;
+
+        int operations=0;
+        for(int num : nums){
+            int com =k-num;
+            if(mpp[com]>0){
+                operations++;
+                mpp[com]--; 
+            }
+            else{
+                mpp[num]++;  //else adding the element to the map
+            }
+        }
+        return operations;
+
+        
+    }
+};
