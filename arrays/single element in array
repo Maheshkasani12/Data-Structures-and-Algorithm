@@ -1,0 +1,19 @@
+
+     int singleNonDuplicate(vector<int>& nums) {
+        int n=nums.size();
+       int result=0;
+       for(int i=0;i<n;i++){
+        result =result^nums[i];
+       }
+       return result;
+        
+        
+    }
+
+    //other method is using unoredmap
+    tc==n
+    sc=n
+
+    brute==two loops
+    n2
+    1
