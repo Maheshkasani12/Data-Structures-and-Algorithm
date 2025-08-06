@@ -1,0 +1,11 @@
+class Solution{	
+	public:
+		int findRangeXOR(int l,int r){
+            int res=l;
+            for(int i=;i<r;i++){
+                res ^=i;
+            }
+            return res;
+			//your code goes here
+		}
+};
