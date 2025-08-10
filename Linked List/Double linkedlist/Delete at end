@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* prev;
+    Node* next;
+    Node(int val) : data(val), prev(NULL), next(NULL) {}
+};
+
+Node* removeTail(Node* head) {
+    if (head == NULL) return NULL;          // Empty list
+    if (head->next == NULL) {               // Only one node
+        delete head;
+        return NULL;
+    }
+
+    Node* temp = head;
+    // Move to last node
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+
+    // temp is now tail
+    temp->prev->next = NULL;
+    delete temp;
+    return head;
+}
+
+void printList(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    // Create example list: 1 <-> 2 <-> 3
+    Node* head = new Node(1);
+    head->next = new Node(2);
+    head->next->prev = head;
+    head->next->next = new Node(3);
+    head->next->next->prev = head->next;
+
+    cout << "Before removing tail: ";
+    printList(head);
+
+    head = removeTail(head);
+
+    cout << "After removing tail: ";
+    printList(head);
+
+    return 0;
+}
