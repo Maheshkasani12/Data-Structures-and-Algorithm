@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+
+// Function to insert at a given position (1-based indexing)
+Node* insertAtPosition(Node* head, int val, int pos) {
+    Node* newNode = new Node(val);
+
+    // Insert at head if pos == 1
+    if (pos == 1) {
+        newNode->next = head;
+        return newNode;
+    }
+
+    Node* temp = head;
+    int count = 1;
+
+    // Traverse to the node before the insertion point
+    while (temp != nullptr && count < pos - 1) {
+        temp = temp->next;
+        count++;
+    }
+
+    // If position is out of bounds
+    if (temp == nullptr) {
+        cout << "Position out of range!" << endl;
+        delete newNode;
+        return head;
+    }
+
+    // Insert the node
+    newNode->next = temp->next;
+    temp->next = newNode;
+
+    return head;
+}
+
+// Function to display the list
+void printList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    Node* head = nullptr;
+
+    // Manually creating a list: 10 -> 20 -> 30
+    head = new Node(10);
+    head->next = new Node(20);
+    head->next->next = new Node(30);
+
+    cout << "Original List: ";
+    printList(head);
+
+    // Insert at position 2 (after 10)
+    head = insertAtPosition(head, 15, 2);
+
+    cout << "After inserting 15 at position 2: ";
+    printList(head);
+
+    // Insert at position 1 (at head)
+    head = insertAtPosition(head, 5, 1);
+
+    cout << "After inserting 5 at position 1: ";
+    printList(head);
+
+    // Insert at position 6 (end of list)
+    head = insertAtPosition(head, 40, 6);
+
+    cout << "After inserting 40 at position 6: ";
+    printList(head);
+
+    return 0;
+}
