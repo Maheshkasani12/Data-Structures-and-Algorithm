@@ -1,0 +1,88 @@
+    /* Structure of Node
+    class Node {
+      public:
+        int data;
+        Node *next;
+        Node *prev;
+    
+        Node(int val) {
+            data = val;
+            this->next = NULL;
+            this->prev = NULL;
+        }
+    };
+    */
+    
+    class Solution {
+      public:
+      Node* deleteHead(Node* head) {
+        if (head == nullptr) return nullptr;
+        Node* temp = head;
+        head = head->next;
+        if (head != nullptr) head->prev = nullptr;
+        delete temp;
+        return head;
+    }
+
+    Node* deleteTail(Node* head) {
+        if (head == nullptr) return nullptr;
+        if (head->next == nullptr) { // Only one node
+            delete head;
+            return nullptr;
+        }
+        Node* temp = head;
+        while (temp->next != nullptr) temp = temp->next;
+        temp->prev->next = nullptr;
+        delete temp;
+        return head;
+    }
+
+        // Function to delete a node at given position.
+        Node* deleteNode(Node* head, int x) {
+            // Your code here
+            
+            if(head==NULL){
+                return NULL;
+            }
+            
+            Node *temp=head;
+            int count=0;
+    
+            while(temp!=NULL){
+                count++;
+    
+                if(count==x){
+                    break;
+                }
+                temp=temp->next;
+                
+            }
+            if(temp==NULL){
+                return head;
+            }
+            Node *back=temp->prev;
+            Node *front=temp->next;
+            
+            if(back==NULL && front==NULL){
+                delete(head);
+                return NULL;
+            }
+            if(back==NULL){
+                return deleteHead(head);
+            }
+            if(front==NULL){
+                return deleteTail(head);
+            }
+            
+            back->next=front;
+            front->prev=back;
+            temp->next=NULL;
+            temp->prev=NULL;
+            delete(temp);
+            return head;
+            
+        
+            
+        
+        }
+    };
