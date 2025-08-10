@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int val) {
+        data = val;
+        next = nullptr;
+    }
+};
+
+// Function to insert at the beginning
+Node* insertAtBeginning(Node* head, int val) {
+    Node* newNode = new Node(val);
+    newNode->next = head;
+    return newNode;
+}
+
+// Function to display the list
+void printList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    Node* head = nullptr; // Empty list
+
+    // Insert nodes
+    head = insertAtBeginning(head, 10);
+    head = insertAtBeginning(head, 20);
+    head = insertAtBeginning(head, 30);
+
+    cout << "Linked List after insertions at beginning: ";
+    printList(head); // 30 20 10
+
+    return 0;
+}
