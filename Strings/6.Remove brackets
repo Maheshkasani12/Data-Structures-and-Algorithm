@@ -5,8 +5,9 @@ using namespace std;
 string solve(string s) {
     string res = "";
     for (char c : s) {
-        if (c == '(' || c == ')')
+        if (c == '(' || c == ')'){
             continue;
+}
         res += c;
     }
     return res;
