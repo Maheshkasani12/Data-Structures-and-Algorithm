@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int findSum(string& s) {
+        // code here
+        int sum=0;
+        string res ="";
+        for(char c : s){
+            if((isdigit(c))){
+                res += c;
+                
+            }
+            else if(!res.empty()){
+                sum += stoi(res);
+                res = "";
+            }
+            
+        }
+        if((!res.empty())){
+            sum +=stoi(res);
+        }
+        
+    return sum;
+    }
+};
