@@ -1,0 +1,24 @@
+void checkString(string s) {
+    int v = 0;
+    int c = 0;
+
+    // Your code here
+    for(char str : s){
+        if(str == 'a' || str == 'e' || str=='i' || str == 'o' || str == 'u'){
+           v++;
+        }
+        
+        else if(isalpha(str)){
+            c++;
+        }
+    }
+
+    if (v > c)
+        cout << "Yes";
+    else if (c > v)
+        cout << "No";
+    else
+        cout << "Same";
+
+    cout << endl;
+}
