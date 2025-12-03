@@ -1,0 +1,65 @@
+/**
+ * Definition for a binary tree node (LeetCode style).
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *l, TreeNode *r) : val(x), left(l), right(r) {}
+ * };
+ */
+
+class Solution {
+private:
+    bool isLeaf(TreeNode* node) {
+        return node && !node->left && !node->right;
+    }
+
+    void addLeftBoundary(TreeNode* root, vector<int> &res) {
+        TreeNode* cur = root->left;
+        while (cur) {
+            if (!isLeaf(cur)) res.push_back(cur->val);
+            // prefer left child, otherwise right child
+            if (cur->left) cur = cur->left;
+            else cur = cur->right;
+        }
+    }
+
+    void addRightBoundary(TreeNode* root, vector<int> &res) {
+        TreeNode* cur = root->right;
+        vector<int> tmp;
+        while (cur) {
+            if (!isLeaf(cur)) tmp.push_back(cur->val);
+            // prefer right child, otherwise left child
+            if (cur->right) cur = cur->right;
+            else cur = cur->left;
+        }
+        // add in reverse order
+        for (int i = (int)tmp.size() - 1; i >= 0; --i) res.push_back(tmp[i]);
+    }
+
+    void addLeaves(TreeNode* root, vector<int> &res) {
+        if (!root) return;
+        if (isLeaf(root)) {
+            res.push_back(root->val);
+            return;
+        }
+        addLeaves(root->left, res);
+        addLeaves(root->right, res);
+    }
+
+public:
+    vector<int> printBoundary(TreeNode* root) {
+        vector<int> res;
+        if (!root) return res;
+
+        if (!isLeaf(root)) res.push_back(root->val); // root (if not a leaf)
+
+        addLeftBoundary(root, res);   // left boundary (top-down, excluding leaves)
+        addLeaves(root, res);         // all leaves (left-to-right)
+        addRightBoundary(root, res);  // right boundary (bottom-up, excluding leaves)
+
+        return res;
+    }
+};
